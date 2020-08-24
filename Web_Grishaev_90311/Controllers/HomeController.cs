@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Web_Grishaev_90311.Models;
 
@@ -11,27 +12,29 @@ namespace Web_Grishaev_90311.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
+            ViewData["Text"] = "Лабораторная работа 2";
+            ViewData["Lst"] = new SelectList(_listDemo, "ListItemValue", "ListItemText");
             return View();
         }
-
-        public IActionResult Privacy()
+        private List<ListDemo> _listDemo;
+        public class ListDemo
         {
-            return View();
+            public int ListItemValue { get; set; }
+            public string ListItemText { get; set; }
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        
+        public HomeController()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            _listDemo = new List<ListDemo>
+            {
+                new ListDemo{ ListItemValue=1, ListItemText="Элемент 1"},
+                new ListDemo{ ListItemValue=2, ListItemText="Элемент 2"},
+                new ListDemo{ ListItemValue=3, ListItemText="Элемент 3"},
+                new ListDemo{ ListItemValue=4, ListItemText="Элемент 4"}
+            };
         }
+        
     }
 }
