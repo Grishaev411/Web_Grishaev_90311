@@ -16,39 +16,15 @@
             <! -- Панель навигации -->
             <! -- Панель навигации -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                <! -- меню сайта -->
+                <!-- меню сайта -->
+                <a class="navbar-brand" asp-action="Index" aspcontroller="Home">WebLabsV06</a>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" asp-controller="Home" aspaction="Index">Lab 2</a>
-                    <a class="nav-item nav-link" asp-controller="Product" aspaction="Index">Каталог</a>
-                    <a class="nav-item nav-link" asp-area="Admin" asppage="/Index">Администрирование</a>
+                    @await Component.InvokeAsync("Menu")
                 </div>
-
-                <! -- меню сайта - конец -->
-
-                <! -- Информация пользователя -->
-                <a href="#" class="navbar-text ml-auto">
-                    00,0 руб <i class="fas fa-shopping-cart nav-color"></i> (0)
-                </a>
-                <div class="dropdown ml-4 nav-color">
-                    <div class="dropdown-toggle" id="dropdownMenuButton"
-                         data-toggle="dropdown" aria-haspopup="true"
-                         aria-expanded="false">
-                        <img src="images/медведь.jpg" width="30"
-                             alt="User" class="rounded" />
-                    </div>
-                    <div class="dropdown-menu"
-                         aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-item-text">
-                            <img src="images/медведь.jpg" width="50"
-                                 alt="User" class="rounded" />
-                            ulbars2006@rambler.ru
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Мои товары</a>
-                        <a class="dropdown-item" href="#">Выйти</a>
-                    </div>
-                </div>
-                <! -- Информация пользователя - конец -->
+                <!-- меню сайта - конец -->
+                <!-- Информация пользователя -->
+                <partial name="_UserPartial" />
+                <!-- Информация пользователя - конец -->
             </nav> <! -- Панель навигации - конец -->
         </div><! -- container - конец -->
     </header><! -- header - конец -->
