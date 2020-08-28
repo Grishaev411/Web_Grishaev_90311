@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using Web_Grishaev_90311.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebLabsV05.DAL.Data;
+using WebLabsV05.DAL.Entities;
+using Web_Grishaev_90311.Services;
 
 namespace Web_Grishaev_90311
 {
@@ -25,20 +27,39 @@ namespace Web_Grishaev_90311
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            })
+                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app,
+                                IWebHostEnvironment env, 
+                                ApplicationDbContext context,
+                                UserManager<ApplicationUser> userManager, 
+                                RoleManager<IdentityRole> roleManager)
+
+        
         {
+            DbInitializer.Seed(context, userManager, roleManager)
+            .GetAwaiter()
+            .GetResult();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
