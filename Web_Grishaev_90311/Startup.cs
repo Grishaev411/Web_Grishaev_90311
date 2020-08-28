@@ -42,7 +42,9 @@ namespace Web_Grishaev_90311
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
             })
-                 .AddEntityFrameworkStores<ApplicationDbContext>();
+                 .AddEntityFrameworkStores<ApplicationDbContext>()
+                 .AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
