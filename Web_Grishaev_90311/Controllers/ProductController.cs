@@ -37,19 +37,19 @@ namespace Web_Grishaev_90311.Controllers
             _dishes = new List<Dish>
  {
  new Dish {DishId = 1, DishName="Суп-харчо",
-Description="Очень острый, невкусный",
+Description="Очень острый, очень вкусный",
 Calories =200, DishGroupId=3, Image="Суп.jpg" },
 new Dish { DishId = 2, DishName="Борщ",
-Description="Много сала, без сметаны",
+Description="Много сала со сметаной",
 Calories =330, DishGroupId=3, Image="Борщ.jpg" },
 new Dish { DishId = 3, DishName="Котлета пожарская",
-Description="Хлеб - 80%, Морковь - 20%",
+Description="Мясо - 80%, Морковь - 20%",
 Calories =635, DishGroupId=4, Image="Котлета.jpg" },
 new Dish { DishId = 4, DishName="Макароны по-флотски",
-Description="С охотничьей колбаской",
+Description="С маслом",
 Calories =524, DishGroupId=4, Image="Макароны.jpg" },
 new Dish { DishId = 5, DishName="Компот",
-Description="Быстро растворимый, 2 литра",
+Description="Быстро растворимый клубничный, 2 литра",
 Calories =180, DishGroupId=5, Image="Компот.jpg" }
  };
         }
