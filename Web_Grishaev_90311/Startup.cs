@@ -14,6 +14,9 @@ using Microsoft.Extensions.Hosting;
 using WebLabsV05.DAL.Data;
 using WebLabsV05.DAL.Entities;
 using Web_Grishaev_90311.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Web_Grishaev_90311.Models;
 
 namespace Web_Grishaev_90311
 {
@@ -31,6 +34,17 @@ namespace Web_Grishaev_90311
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<Cart>(sp => CartService.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt =>
+            {
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -79,6 +93,7 @@ namespace Web_Grishaev_90311
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
