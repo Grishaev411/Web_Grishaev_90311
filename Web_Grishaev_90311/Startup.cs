@@ -17,6 +17,8 @@ using Web_Grishaev_90311.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using Web_Grishaev_90311.Models;
+using Microsoft.Extensions.Logging;
+using Web_Grishaev_90311.Extensions;
 
 namespace Web_Grishaev_90311
 {
@@ -68,10 +70,11 @@ namespace Web_Grishaev_90311
                                 IWebHostEnvironment env, 
                                 ApplicationDbContext context,
                                 UserManager<ApplicationUser> userManager, 
-                                RoleManager<IdentityRole> roleManager)
-
+                                RoleManager<IdentityRole> roleManager,
+                                ILoggerFactory logger)
         
         {
+            logger.AddFile("Logs/log-{Date}.txt");
             DbInitializer.Seed(context, userManager, roleManager)
             .GetAwaiter()
             .GetResult();
@@ -89,6 +92,8 @@ namespace Web_Grishaev_90311
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseFileLogging();
 
             app.UseRouting();
 

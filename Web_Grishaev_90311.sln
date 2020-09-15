@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_Grishaev_90311", "Web_G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebLabsV05.DAL", "WebLabsV05.DAL\WebLabsV05.DAL.csproj", "{3683427F-53BC-49F6-9664-5C468C5550CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebGrishaev.Tests", "WebGrishaev.Tests\WebGrishaev.Tests.csproj", "{5485B4B3-5F60-4CDE-870C-B4E846E0209D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGrishaev.Tests", "WebGrishaev.Tests\WebGrishaev.Tests.csproj", "{5485B4B3-5F60-4CDE-870C-B4E846E0209D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

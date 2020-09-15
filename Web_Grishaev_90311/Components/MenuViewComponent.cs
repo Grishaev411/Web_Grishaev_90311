@@ -19,7 +19,8 @@ namespace Web_Grishaev_90311.Components
             new MenuItem{ IsPage=true, Area="Admin", Page="/Index",
             Text="Администрирование"},
             new MenuItem{ IsPage=true, Area="Admin", Page="/Index",
-            Text="Гришаев"}
+            Text="Гришаев"},
+            new MenuItem{ IsPage=true, Area="ApiDemo", Page="/Index", Text="API-demo"}
         };
 
         public IViewComponentResult Invoke()
